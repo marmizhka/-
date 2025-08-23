@@ -1,1 +1,2624 @@
+Public flag As Boolean
+Option Explicit
+Sub CommandButton1_Click()
+
+Dim odin As Byte
+Dim dv As Byte
+Dim tr As Byte
+Dim chet As Byte
+Dim i As Byte
+Dim x As Variant
+Dim y As Variant
+Dim arrkak() As Variant
+Dim ws As Range
+Dim ks As Range
+Dim wt As Range
+Dim kt As Range
+flag = True
+chet = 1
+
+With Worksheets("Ëèñò1").Range("C4:L13")
+For i = 1 To chet
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+
+    If IsEmpty(.Cells(x - 1, y)) And IsEmpty(.Cells(x - 2, y)) And IsEmpty(.Cells(x - 3, y)) Then
+        .Cells(x, y).Interior.ColorIndex = 17 'ãëàâíûé âåðõ'
+        .Cells(x - 1, y).Interior.ColorIndex = 17
+        .Cells(x - 2, y).Interior.ColorIndex = 17
+        .Cells(x - 3, y).Interior.ColorIndex = 17
+        .Cells(x, y).Value = "1" 'ãëàâíûé âåðõ'
+        .Cells(x - 1, y).Value = "1"
+        .Cells(x - 2, y).Value = "1"
+        .Cells(x - 3, y).Value = "1"
+        If x - 4 <> 0 Then
+            If y - 1 <> 0 Then
+                .Cells(x - 4, y - 1).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 4, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x - 4, y + 1).Value = "0"
+            End If
+        End If
+        If y - 1 <> 0 Then
+            .Cells(x - 3, y - 1).Value = "0"
+            .Cells(x - 2, y - 1).Value = "0"
+            .Cells(x - 1, y - 1).Value = "0" 'ëåâî'
+            .Cells(x, y - 1).Value = "0"
+        End If
+        If y + 1 <> 11 Then
+            .Cells(x - 3, y + 1).Value = "0"
+            .Cells(x - 2, y + 1).Value = "0"
+            .Cells(x - 1, y + 1).Value = "0" 'ïðàâî'
+            .Cells(x, y + 1).Value = "0"
+        End If
+        If x + 1 <> 11 Then
+            If y - 1 <> 0 Then
+                .Cells(x + 1, y - 1).Value = "0" 'íèç'
+            End If
+                .Cells(x + 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x + 1, y + 1).Value = "0"
+            End If
+        End If
+    End If
+    
+    If IsEmpty(.Cells(x, y - 1)) And IsEmpty(.Cells(x, y - 2)) And IsEmpty(.Cells(x, y - 3)) Then
+        .Cells(x, y).Interior.ColorIndex = 17 'ãëàâíîå ëåâî'
+        .Cells(x, y - 1).Interior.ColorIndex = 17
+        .Cells(x, y - 2).Interior.ColorIndex = 17
+        .Cells(x, y - 3).Interior.ColorIndex = 17
+        .Cells(x, y).Value = "1" 'ãëàâíîå ëåâî'
+        .Cells(x, y - 1).Value = "1"
+        .Cells(x, y - 2).Value = "1"
+        .Cells(x, y - 3).Value = "1"
+        If x - 1 <> 0 Then
+            If y - 4 <> 0 Then
+                .Cells(x - 1, y - 4).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 1, y - 3).Value = "0"
+                .Cells(x - 1, y - 2).Value = "0"
+                .Cells(x - 1, y - 1).Value = "0"
+                .Cells(x - 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x - 1, y + 1).Value = "0"
+            End If
+        End If
+        If y - 4 <> 0 Then
+            .Cells(x, y - 4).Value = "0" 'ëåâî'
+        End If
+        If y + 1 <> 11 Then
+            .Cells(x, y + 1).Value = "0" 'ïðàâî'
+        End If
+        If x + 1 <> 11 Then
+            If y - 4 <> 0 Then
+                .Cells(x + 1, y - 4).Value = "0" 'íèç'
+            End If
+                .Cells(x + 1, y - 3).Value = "0"
+                .Cells(x + 1, y - 2).Value = "0"
+                .Cells(x + 1, y - 1).Value = "0"
+                .Cells(x + 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x + 1, y + 1).Value = "0"
+            End If
+        End If
+    End If
+    
+    If IsEmpty(.Cells(x, y + 1)) And IsEmpty(.Cells(x, y + 2)) And IsEmpty(.Cells(x, y + 3)) And y + 3 <> 13 Then
+        .Cells(x, y).Interior.ColorIndex = 17 'ãëàâíîå ïðàâî'
+        .Cells(x, y + 1).Interior.ColorIndex = 17
+        .Cells(x, y + 2).Interior.ColorIndex = 17
+        .Cells(x, y + 3).Interior.ColorIndex = 17
+        .Cells(x, y).Value = "1" 'ãëàâíîå ïðàâî'
+        .Cells(x, y + 1).Value = "1"
+        .Cells(x, y + 2).Value = "1"
+        .Cells(x, y + 3).Value = "1"
+        If x - 1 <> 0 Then
+            If y - 1 <> 0 Then
+                .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 1, y).Value = "0"
+                .Cells(x - 1, y + 1).Value = "0"
+                .Cells(x - 1, y + 2).Value = "0"
+                .Cells(x - 1, y + 3).Value = "0"
+            If y + 4 <> 11 Then
+                .Cells(x - 1, y + 4).Value = "0"
+            End If
+        End If
+        If y - 1 <> 0 Then
+            .Cells(x, y - 1).Value = "0" 'ëåâî'
+        End If
+        If y + 4 <> 11 Then
+            .Cells(x, y + 4).Value = "0" 'ïðàâî'
+        End If
+        If x + 1 <> 11 Then
+            If y - 1 <> 0 Then
+                .Cells(x + 1, y - 1).Value = "0" 'íèç'
+            End If
+                .Cells(x + 1, y).Value = "0"
+                .Cells(x + 1, y + 1).Value = "0"
+                .Cells(x + 1, y + 2).Value = "0"
+                .Cells(x + 1, y + 3).Value = "0"
+            If y + 4 <> 11 Then
+                .Cells(x + 1, y + 4).Value = "0"
+            End If
+        End If
+    End If
+    
+    If IsEmpty(.Cells(x + 1, y)) And IsEmpty(.Cells(x + 2, y)) And IsEmpty(.Cells(x + 3, y)) And x + 3 <> 13 Then
+        .Cells(x, y).Interior.ColorIndex = 17 'ãëàâíûé íèç'
+        .Cells(x + 1, y).Interior.ColorIndex = 17
+        .Cells(x + 2, y).Interior.ColorIndex = 17
+        .Cells(x + 3, y).Interior.ColorIndex = 17
+        .Cells(x, y).Value = "1" 'ãëàâíûé íèç'
+        .Cells(x + 1, y).Value = "1"
+        .Cells(x + 2, y).Value = "1"
+        .Cells(x + 3, y).Value = "1"
+        If x - 1 <> 0 Then
+            If y - 1 <> 0 Then
+                .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x - 1, y + 1).Value = "0"
+            End If
+        End If
+        If y - 1 <> 0 Then
+            .Cells(x, y - 1).Value = "0"
+            .Cells(x + 1, y - 1).Value = "0" 'ëåâî'
+            .Cells(x + 2, y - 1).Value = "0"
+            .Cells(x + 3, y - 1).Value = "0"
+        End If
+        If y + 1 <> 11 Then
+            .Cells(x, y + 1).Value = "0"
+            .Cells(x + 1, y + 1).Value = "0" 'ïðàâî'
+            .Cells(x + 2, y + 1).Value = "0"
+            .Cells(x + 3, y + 1).Value = "0"
+        End If
+        If x + 4 <> 11 Then
+            If y - 1 <> 0 Then
+                .Cells(x + 4, y - 1).Value = "0" 'íèç'
+            End If
+                .Cells(x + 4, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x + 4, y + 1).Value = "0"
+            End If
+        End If
+    End If
+    
+Next i
+End With
+
+With Worksheets("Ëèñò1").Range("C18:L27")
+For i = 1 To chet
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+        
+    If IsEmpty(.Cells(x - 1, y)) And IsEmpty(.Cells(x - 2, y)) And IsEmpty(.Cells(x - 3, y)) Then
+        .Cells(x, y).Value = "12" 'ãëàâíûé âåðõ'
+        .Cells(x - 1, y).Value = "12"
+        .Cells(x - 2, y).Value = "12"
+        .Cells(x - 3, y).Value = "12"
+        If x - 4 <> 0 Then
+            If y - 1 <> 0 Then
+                .Cells(x - 4, y - 1).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 4, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x - 4, y + 1).Value = "0"
+            End If
+        End If
+        If y - 1 <> 0 Then
+            .Cells(x - 3, y - 1).Value = "0"
+            .Cells(x - 2, y - 1).Value = "0"
+            .Cells(x - 1, y - 1).Value = "0" 'ëåâî'
+            .Cells(x, y - 1).Value = "0"
+        End If
+        If y + 1 <> 11 Then
+            .Cells(x - 3, y + 1).Value = "0"
+            .Cells(x - 2, y + 1).Value = "0"
+            .Cells(x - 1, y + 1).Value = "0" 'ïðàâî'
+            .Cells(x, y + 1).Value = "0"
+        End If
+        If x + 1 <> 11 Then
+            If y - 1 <> 0 Then
+                .Cells(x + 1, y - 1).Value = "0" 'íèç'
+            End If
+                .Cells(x + 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x + 1, y + 1).Value = "0"
+            End If
+        End If
+    End If
+    
+    If IsEmpty(.Cells(x, y - 1)) And IsEmpty(.Cells(x, y - 2)) And IsEmpty(.Cells(x, y - 3)) Then
+        .Cells(x, y).Value = "12" 'ãëàâíîå ëåâî'
+        .Cells(x, y - 1).Value = "12"
+        .Cells(x, y - 2).Value = "12"
+        .Cells(x, y - 3).Value = "12"
+        If x - 1 <> 0 Then
+            If y - 4 <> 0 Then
+                .Cells(x - 1, y - 4).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 1, y - 3).Value = "0"
+                .Cells(x - 1, y - 2).Value = "0"
+                .Cells(x - 1, y - 1).Value = "0"
+                .Cells(x - 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x - 1, y + 1).Value = "0"
+            End If
+        End If
+        If y - 4 <> 0 Then
+            .Cells(x, y - 4).Value = "0" 'ëåâî'
+        End If
+        If y + 1 <> 11 Then
+            .Cells(x, y + 1).Value = "0" 'ïðàâî'
+        End If
+        If x + 1 <> 11 Then
+            If y - 4 <> 0 Then
+                .Cells(x + 1, y - 4).Value = "0" 'íèç'
+            End If
+                .Cells(x + 1, y - 3).Value = "0"
+                .Cells(x + 1, y - 2).Value = "0"
+                .Cells(x + 1, y - 1).Value = "0"
+                .Cells(x + 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x + 1, y + 1).Value = "0"
+            End If
+        End If
+    End If
+    
+    If IsEmpty(.Cells(x, y + 1)) And IsEmpty(.Cells(x, y + 2)) And IsEmpty(.Cells(x, y + 3)) And y + 3 <> 13 Then
+        .Cells(x, y).Value = "12" 'ãëàâíîå ïðàâî'
+        .Cells(x, y + 1).Value = "12"
+        .Cells(x, y + 2).Value = "12"
+        .Cells(x, y + 3).Value = "12"
+        If x - 1 <> 0 Then
+            If y - 1 <> 0 Then
+                .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 1, y).Value = "0"
+                .Cells(x - 1, y + 1).Value = "0"
+                .Cells(x - 1, y + 2).Value = "0"
+                .Cells(x - 1, y + 3).Value = "0"
+            If y + 4 <> 11 Then
+                .Cells(x - 1, y + 4).Value = "0"
+            End If
+        End If
+        If y - 1 <> 0 Then
+            .Cells(x, y - 1).Value = "0" 'ëåâî'
+        End If
+        If y + 4 <> 11 Then
+            .Cells(x, y + 4).Value = "0" 'ïðàâî'
+        End If
+        If x + 1 <> 11 Then
+            If y - 1 <> 0 Then
+                .Cells(x + 1, y - 1).Value = "0" 'íèç'
+            End If
+                .Cells(x + 1, y).Value = "0"
+                .Cells(x + 1, y + 1).Value = "0"
+                .Cells(x + 1, y + 2).Value = "0"
+                .Cells(x + 1, y + 3).Value = "0"
+            If y + 4 <> 11 Then
+                .Cells(x + 1, y + 4).Value = "0"
+            End If
+        End If
+    End If
+        
+    If IsEmpty(.Cells(x + 1, y)) And IsEmpty(.Cells(x + 2, y)) And IsEmpty(.Cells(x + 3, y)) And x + 3 <> 13 Then
+        .Cells(x, y).Value = "12" 'ãëàâíûé íèç'
+        .Cells(x + 1, y).Value = "12"
+        .Cells(x + 2, y).Value = "12"
+        .Cells(x + 3, y).Value = "12"
+        If x - 1 <> 0 Then
+            If y - 1 <> 0 Then
+                .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+            End If
+                .Cells(x - 1, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x - 1, y + 1).Value = "0"
+            End If
+        End If
+        If y - 1 <> 0 Then
+            .Cells(x, y - 1).Value = "0"
+            .Cells(x + 1, y - 1).Value = "0" 'ëåâî'
+            .Cells(x + 2, y - 1).Value = "0"
+            .Cells(x + 3, y - 1).Value = "0"
+        End If
+        If y + 1 <> 11 Then
+            .Cells(x, y + 1).Value = "0"
+            .Cells(x + 1, y + 1).Value = "0" 'ïðàâî'
+            .Cells(x + 2, y + 1).Value = "0"
+            .Cells(x + 3, y + 1).Value = "0"
+        End If
+        If x + 4 <> 11 Then
+            If y - 1 <> 0 Then
+                .Cells(x + 4, y - 1).Value = "0" 'íèç'
+            End If
+                .Cells(x + 4, y).Value = "0"
+            If y + 1 <> 11 Then
+                .Cells(x + 4, y + 1).Value = "0"
+            End If
+        End If
+    End If
+        
+Next i
+End With
+
+tr = 2
+With Worksheets("Ëèñò1").Range("C4:L13")
+For i = 1 To tr
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+
+If IsEmpty(.Cells(x, y)) Then
+ If .Cells(x, y).Interior.ColorIndex <> 17 Then
+    If (IsEmpty(.Cells(x - 2, y)) And .Cells(x - 2, y).Interior.ColorIndex <> 17) Or (IsEmpty(.Cells(x, y - 2)) And .Cells(x, y - 2).Interior.ColorIndex <> 17) Or (IsEmpty(.Cells(x, y + 2)) And .Cells(x, y + 2).Interior.ColorIndex <> 17) Or (IsEmpty(.Cells(x + 2, y)) And .Cells(x + 2, y).Interior.ColorIndex <> 17) Then
+        If IsEmpty(.Cells(x - 1, y)) And IsEmpty(.Cells(x - 2, y)) Then 'ãëàâíûé âåðõ'
+                .Cells(x, y).Interior.ColorIndex = 17
+                .Cells(x - 1, y).Interior.ColorIndex = 17
+                .Cells(x - 2, y).Interior.ColorIndex = 17
+                .Cells(x, y).Value = "1"
+                .Cells(x - 1, y).Value = "1"
+                .Cells(x - 2, y).Value = "1"
+                If x - 3 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 3, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 3, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 3, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x - 2, y - 1).Value = "0"
+                    .Cells(x - 1, y - 1).Value = "0" 'ëåâî'
+                    .Cells(x, y - 1).Value = "0"
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x - 2, y + 1).Value = "0"
+                    .Cells(x - 1, y + 1).Value = "0" 'ïðàâî'
+                    .Cells(x, y + 1).Value = "0"
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        If IsEmpty(.Cells(x, y - 1)) And IsEmpty(.Cells(x, y - 2)) Then 'ãëàâíîå ëåâî'
+                .Cells(x, y).Interior.ColorIndex = 17
+                .Cells(x, y - 1).Interior.ColorIndex = 17
+                .Cells(x, y - 2).Interior.ColorIndex = 17
+                .Cells(x, y).Value = "1"
+                .Cells(x, y - 1).Value = "1"
+                .Cells(x, y - 2).Value = "1"
+                If x - 1 <> 0 Then
+                    If y - 3 <> 0 Then
+                        .Cells(x - 1, y - 3).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y - 2).Value = "0"
+                        .Cells(x - 1, y - 1).Value = "0"
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 3 <> 0 Then
+                    .Cells(x, y - 3).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 3 <> 0 Then
+                        .Cells(x + 1, y - 3).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y - 2).Value = "0"
+                        .Cells(x + 1, y - 1).Value = "0"
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x, y + 1)) And IsEmpty(.Cells(x, y + 2)) And y + 2 <> 12 Then 'ãëàâíîå ïðàâî'
+                .Cells(x, y).Interior.ColorIndex = 17
+                .Cells(x, y + 1).Interior.ColorIndex = 17
+                .Cells(x, y + 2).Interior.ColorIndex = 17
+                .Cells(x, y).Value = "1"
+                .Cells(x, y + 1).Value = "1"
+                .Cells(x, y + 2).Value = "1"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y).Value = "0"
+                        .Cells(x - 1, y + 1).Value = "0"
+                        .Cells(x - 1, y + 2).Value = "0"
+                    If y + 3 <> 11 Then
+                        .Cells(x - 1, y + 3).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 3 <> 11 Then
+                    .Cells(x, y + 3).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                        .Cells(x + 1, y + 1).Value = "0"
+                        .Cells(x + 1, y + 2).Value = "0"
+                    If y + 3 <> 11 Then
+                        .Cells(x + 1, y + 3).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x + 1, y)) And IsEmpty(.Cells(x + 2, y)) And x + 2 <> 12 Then 'ãëàâíûé íèç'
+                .Cells(x, y).Interior.ColorIndex = 17
+                .Cells(x + 1, y).Interior.ColorIndex = 17
+                .Cells(x + 2, y).Interior.ColorIndex = 17
+                .Cells(x, y).Value = "1"
+                .Cells(x + 1, y).Value = "1"
+                .Cells(x + 2, y).Value = "1"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x, y - 1).Value = "0"
+                    .Cells(x + 1, y - 1).Value = "0" 'ëåâî'
+                    .Cells(x + 2, y - 1).Value = "0"
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x, y + 1).Value = "0"
+                    .Cells(x + 1, y + 1).Value = "0" 'ïðàâî'
+                    .Cells(x + 2, y + 1).Value = "0"
+                End If
+                If x + 3 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 3, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 3, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 3, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        
+     Else
+     i = i - 1
+     End If
+ Else
+ i = i - 1
+ End If
+Else
+i = i - 1
+End If
+Next i
+End With
+
+With Worksheets("Ëèñò1").Range("C18:L27")
+For i = 1 To tr
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+
+If IsEmpty(.Cells(x, y)) Then
+    If IsEmpty(.Cells(x - 2, y)) Or IsEmpty(.Cells(x, y - 2)) Or IsEmpty(.Cells(x, y + 2)) Or IsEmpty(.Cells(x + 2, y)) Then
+        If IsEmpty(.Cells(x - 1, y)) And IsEmpty(.Cells(x - 2, y)) Then 'ãëàâíûé âåðõ'
+                .Cells(x, y).Value = "12"
+                .Cells(x - 1, y).Value = "12"
+                .Cells(x - 2, y).Value = "12"
+                If x - 3 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 3, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 3, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 3, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x - 2, y - 1).Value = "0"
+                    .Cells(x - 1, y - 1).Value = "0" 'ëåâî'
+                    .Cells(x, y - 1).Value = "0"
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x - 2, y + 1).Value = "0"
+                    .Cells(x - 1, y + 1).Value = "0" 'ïðàâî'
+                    .Cells(x, y + 1).Value = "0"
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        If IsEmpty(.Cells(x, y - 1)) And IsEmpty(.Cells(x, y - 2)) Then 'ãëàâíîå ëåâî'
+                .Cells(x, y).Value = "12"
+                .Cells(x, y - 1).Value = "12"
+                .Cells(x, y - 2).Value = "12"
+                If x - 1 <> 0 Then
+                    If y - 3 <> 0 Then
+                        .Cells(x - 1, y - 3).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y - 2).Value = "0"
+                        .Cells(x - 1, y - 1).Value = "0"
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 3 <> 0 Then
+                    .Cells(x, y - 3).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 3 <> 0 Then
+                        .Cells(x + 1, y - 3).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y - 2).Value = "0"
+                        .Cells(x + 1, y - 1).Value = "0"
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x, y + 1)) And IsEmpty(.Cells(x, y + 2)) And y + 2 <> 12 Then 'ãëàâíîå ïðàâî'
+                .Cells(x, y).Value = "12"
+                .Cells(x, y + 1).Value = "12"
+                .Cells(x, y + 2).Value = "12"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y).Value = "0"
+                        .Cells(x - 1, y + 1).Value = "0"
+                        .Cells(x - 1, y + 2).Value = "0"
+                    If y + 3 <> 11 Then
+                        .Cells(x - 1, y + 3).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 3 <> 11 Then
+                    .Cells(x, y + 3).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                        .Cells(x + 1, y + 1).Value = "0"
+                        .Cells(x + 1, y + 2).Value = "0"
+                    If y + 3 <> 11 Then
+                        .Cells(x + 1, y + 3).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x + 1, y)) And IsEmpty(.Cells(x + 2, y)) And x + 2 <> 12 Then 'ãëàâíûé íèç'
+                .Cells(x, y).Value = "12"
+                .Cells(x + 1, y).Value = "12"
+                .Cells(x + 2, y).Value = "12"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x, y - 1).Value = "0"
+                    .Cells(x + 1, y - 1).Value = "0" 'ëåâî'
+                    .Cells(x + 2, y - 1).Value = "0"
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x, y + 1).Value = "0"
+                    .Cells(x + 1, y + 1).Value = "0" 'ïðàâî'
+                    .Cells(x + 2, y + 1).Value = "0"
+                End If
+                If x + 3 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 3, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 3, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 3, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        
+     Else
+     i = i - 1
+     End If
+Else
+i = i - 1
+End If
+Next i
+End With
+
+dv = 3
+With Worksheets("Ëèñò1").Range("C4:L13")
+For i = 1 To dv
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+If IsEmpty(.Cells(x, y)) Then
+ If .Cells(x, y).Interior.ColorIndex <> 17 Then
+    If IsEmpty(.Cells(x - 1, y)) Or IsEmpty(.Cells(x, y - 1)) Or IsEmpty(.Cells(x, y + 1)) Or IsEmpty(.Cells(x + 1, y)) Then
+        .Cells(x, y).Interior.ColorIndex = 17
+        .Cells(x, y).Value = "1"
+        If IsEmpty(.Cells(x - 1, y)) Then 'ãëàâíûé âåðõ'
+                .Cells(x - 1, y).Interior.ColorIndex = 17
+                .Cells(x - 1, y).Value = "1"
+                If x - 2 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 2, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 2, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 2, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x - 1, y - 1).Value = 0
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x - 1, y + 1).Value = "0"
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        If IsEmpty(.Cells(x, y - 1)) Then 'ãëàâíîå ëåâî'
+                .Cells(x, y - 1).Interior.ColorIndex = 17
+                .Cells(x, y - 1).Value = "1"
+                If x - 1 <> 0 Then
+                    If y - 2 <> 0 Then
+                        .Cells(x - 1, y - 2).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y - 1).Value = 0
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 2 <> 0 Then
+                    .Cells(x, y - 2).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 2 <> 0 Then
+                        .Cells(x + 1, y - 2).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y - 1).Value = "0"
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x, y + 1)) And y + 1 <> 11 Then 'ãëàâíîå ïðàâî'
+                .Cells(x, y + 1).Interior.ColorIndex = 17
+                .Cells(x, y + 1).Value = "1"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y + 1).Value = 0
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 2 <> 11 Then
+                        .Cells(x - 1, y + 2).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 2 <> 11 Then
+                    .Cells(x, y + 2).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                        .Cells(x + 1, y + 1).Value = "0"
+                    If y + 2 <> 11 Then
+                        .Cells(x + 1, y + 2).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x + 1, y)) And x + 1 <> 11 Then 'ãëàâíûé íèç'
+                .Cells(x + 1, y).Interior.ColorIndex = 17
+                .Cells(x + 1, y).Value = "1"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x + 1, y - 1).Value = 0
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x + 1, y + 1).Value = "0"
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 2 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 2, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 2, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 2, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+    Else
+    i = i - 1
+    End If
+ Else
+ i = i - 1
+ End If
+Else
+i = i - 1
+End If
+Next i
+End With
+
+With Worksheets("Ëèñò1").Range("C18:L27")
+For i = 1 To dv
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+If IsEmpty(.Cells(x, y)) Then
+    If IsEmpty(.Cells(x - 1, y)) Or IsEmpty(.Cells(x, y - 1)) Or IsEmpty(.Cells(x, y + 1)) Or IsEmpty(.Cells(x + 1, y)) Then
+        .Cells(x, y).Value = "12"
+        
+        If IsEmpty(.Cells(x - 1, y)) Then 'ãëàâíûé âåðõ'
+                .Cells(x - 1, y).Value = "12"
+                If x - 2 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 2, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 2, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 2, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x - 1, y - 1).Value = 0
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x - 1, y + 1).Value = "0"
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        If IsEmpty(.Cells(x, y - 1)) Then 'ãëàâíîå ëåâî'
+                .Cells(x, y - 1).Value = "12"
+                If x - 1 <> 0 Then
+                    If y - 2 <> 0 Then
+                        .Cells(x - 1, y - 2).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y - 1).Value = 0
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 2 <> 0 Then
+                    .Cells(x, y - 2).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 2 <> 0 Then
+                        .Cells(x + 1, y - 2).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y - 1).Value = "0"
+                        .Cells(x + 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 1, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x, y + 1)) And y + 1 <> 11 Then 'ãëàâíîå ïðàâî'
+                .Cells(x, y + 1).Value = "12"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y + 1).Value = 0
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 2 <> 11 Then
+                        .Cells(x - 1, y + 2).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 2 <> 11 Then
+                    .Cells(x, y + 2).Value = "0" 'ïðàâî'
+                End If
+                If x + 1 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 1, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 1, y).Value = "0"
+                        .Cells(x + 1, y + 1).Value = "0"
+                    If y + 2 <> 11 Then
+                        .Cells(x + 1, y + 2).Value = "0"
+                    End If
+                End If
+        End If
+        
+        If IsEmpty(.Cells(x + 1, y)) And x + 1 <> 11 Then 'ãëàâíûé íèç'
+                .Cells(x + 1, y).Value = "12"
+                If x - 1 <> 0 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+                    End If
+                        .Cells(x - 1, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x - 1, y + 1).Value = "0"
+                    End If
+                End If
+                If y - 1 <> 0 Then
+                    .Cells(x + 1, y - 1).Value = 0
+                    .Cells(x, y - 1).Value = "0" 'ëåâî'
+                End If
+                If y + 1 <> 11 Then
+                    .Cells(x + 1, y + 1).Value = "0"
+                    .Cells(x, y + 1).Value = "0" 'ïðàâî'
+                End If
+                If x + 2 <> 11 Then
+                    If y - 1 <> 0 Then
+                        .Cells(x + 2, y - 1).Value = "0" 'íèç'
+                    End If
+                        .Cells(x + 2, y).Value = "0"
+                    If y + 1 <> 11 Then
+                        .Cells(x + 2, y + 1).Value = "0"
+                    End If
+                End If
+        End If
+    Else
+    i = i - 1
+    End If
+Else
+i = i - 1
+End If
+Next i
+End With
+
+odin = 4
+
+With Worksheets("Ëèñò1").Range("C4:L13")
+For i = 1 To odin
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+
+If IsEmpty(Range("C4:L13").Cells(x, y)) Then
+ If Range("C4:L13").Cells(x, y).Interior.ColorIndex <> 17 Then
+    With Worksheets("Ëèñò1").Range("C4:L13")
+    .Cells(x, y).Interior.ColorIndex = 17
+    .Cells(x, y).Value = "1"
+    If x - 1 <> 0 Then
+        If y - 1 <> 0 Then
+            .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+        End If
+            .Cells(x - 1, y).Value = "0"
+        If y + 1 <> 11 Then
+            .Cells(x - 1, y + 1).Value = "0"
+        End If
+    End If
+    If y - 1 <> 0 Then
+        .Cells(x, y - 1).Value = "0" 'ëåâî'
+    End If
+    If y + 1 <> 11 Then
+        .Cells(x, y + 1).Value = "0" 'ïðàâî'
+    End If
+    If x + 1 <> 11 Then
+        If y - 1 <> 0 Then
+            .Cells(x + 1, y - 1).Value = "0" 'íèç'
+        End If
+            .Cells(x + 1, y).Value = "0"
+        If y + 1 <> 11 Then
+            .Cells(x + 1, y + 1).Value = "0"
+        End If
+    End If
+    End With
+
+ Else
+    i = i - 1
+ End If
+Else
+i = i - 1
+End If
+Next i
+End With
+
+With Worksheets("Ëèñò1").Range("C18:L27")
+For i = 1 To odin
+x = Int(10 * Rnd + 1)
+y = Int(10 * Rnd + 1)
+
+If IsEmpty(Range("C18:L27").Cells(x, y)) Then
+    With Worksheets("Ëèñò1").Range("C18:L27")
+    .Cells(x, y).Value = "12"
+    If x - 1 <> 0 Then
+        If y - 1 <> 0 Then
+            .Cells(x - 1, y - 1).Value = "0" 'âåðõ'
+        End If
+            .Cells(x - 1, y).Value = "0"
+        If y + 1 <> 11 Then
+            .Cells(x - 1, y + 1).Value = "0"
+        End If
+    End If
+    If y - 1 <> 0 Then
+        .Cells(x, y - 1).Value = "0" 'ëåâî'
+    End If
+    If y + 1 <> 11 Then
+        .Cells(x, y + 1).Value = "0" 'ïðàâî'
+    End If
+    If x + 1 <> 11 Then
+        If y - 1 <> 0 Then
+            .Cells(x + 1, y - 1).Value = "0" 'íèç'
+        End If
+            .Cells(x + 1, y).Value = "0"
+        If y + 1 <> 11 Then
+            .Cells(x + 1, y + 1).Value = "0"
+        End If
+    End If
+    End With
+
+Else
+i = i - 1
+End If
+Next i
+End With
+
+Set ws = Worksheets("Ëèñò1").Range("C4:L13")
+Set ks = ws.Cells
+Set wt = Worksheets("Ëèñò1").Range("C18:L27")
+Set kt = wt.Cells
+
+For Each ks In ws
+    If ks.Value = "1" Then
+    ks.Font.ColorIndex = 17
+    ElseIf ks.Value = "0" Then
+    ks.Font.Color = vbWhite
+    End If
+Next ks
+For Each kt In wt
+    If kt.Value = "12" Or kt.Value = "0" Then
+    kt.Font.Color = vbWhite
+    End If
+Next kt
+
+    
+'äîáàâèòü vbWhite äëÿ âòîðîãî ïîëÿ'
+End Sub
+
+Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+Dim k, p, i, pip, n, l As Byte
+Dim s As Byte
+Dim d As Byte
+Dim Start As Single
+Dim Pause As Single
+Dim p1 As Range
+Dim p2 As Range
+Dim p3 As Range
+Dim p4 As Range
+Dim p5 As Range
+Dim m1 As Variant
+Dim m2 As Variant
+Dim m3 As Variant
+Dim m4 As Variant
+Dim m5 As Variant
+Dim h As Double
+Dim h1 As Double
+Dim ac As Variant
+Dim c As Variant
+Dim b As Variant
+Dim pol As Range
+Dim wk As Worksheet
+
+Pause = 0.8
+Start = Timer
+pip = 1
+Set ac = ActiveCell
+Set wk = Worksheets("Ëèñò1")
+
+If flag = True Then '1'
+If Not Application.Intersect(ac, Range("C18:L27")) Is Nothing Then '2'
+    If ac.Value = "0" Or IsEmpty(ac) Then 'ìû ïðîìàõèâàåìñÿ' '3'
+        ac.Value = "x"
+        ac.Font.ColorIndex = vbBlack
+        wk.Range("P17").Value = "ìèìî"
+            
+            For i = 1 To pip 'êîìï îòâå÷àåò'
+            k = Int(10 * Rnd + 1)
+            p = Int(10 * Rnd + 1)
+            Set pol = wk.Range("C4:L13").Cells(k, p)
+            If pol.Value = "0" Or pol.Interior.ColorIndex <> 17 Then 'êîìï ïðîìàõèâàåòñÿ' 'bub'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                pol.Value = "x"
+                pol.Font.Color = vbBlack
+                wk.Range("P3").Value = "ìèìî"
+                
+            ElseIf pol.Interior.ColorIndex = 17 Then 'êîìï ïîïàäàåò' 'bub'
+                                    Do While Timer < Start + 2 * Pause
+                                        DoEvents
+                                    Loop
+            pol.Value = "y"
+            pol.Font.ColorIndex = 3
+            If pol = [C4] Then 'ÂË 11'
+                Set p1 = Union(pol.Offset(1, 0), pol.Offset(0, 1))
+                Set c = p1.Find(1, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P3").Value = "ðàíèë" 'õ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                Else 'a'
+                    Set c = p1.Find("y", LookIn:=xlValues)
+                    If Not c Is Nothing Then 'b'
+                        If c.Address = "D4" Then 'ïîøëè íàïðàâî'
+                        Set m2 = c.Offset(0, 1).Find(1, LookIn:=xlValues)
+                        If Not m2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set m2 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not m2 Is Nothing Then
+                                Set m3 = m2.Offset(0, 1).Find(1, LookIn:=xlValues)
+                                If Not m3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                            DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        
+                        ElseIf c.Address = "C5" Then 'ïîøëè âíèç'
+                        Set p2 = c.Offset(1, 0).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                           Set p2 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(1, 0).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P3").Value = "óáèë"
+                        Do While Timer < Start + Pause
+                                DoEvents
+                        Loop
+                    End If 'b'
+                End If 'a'
+                
+            ElseIf pol = [L13] Then 'ÍÏ'
+            Set p1 = Union(pol.Offset(-1, 0), pol.Offset(0, -1))
+            Set b = p1.Find(1, LookIn:=xlValues)
+                If Not b Is Nothing Then 'a'
+                    wk.Range("P3").Value = "ðàíèë" 'õ1'
+                    Do While Timer < Start + Pause
+                            DoEvents
+                    Loop
+                Else 'a'
+                    Set b = p1.Find("y", LookIn:=xlValues)
+                    If Not b Is Nothing Then 'b'
+                    If b.Address = "K13" Then 'ïîøëè íàëåâî'
+                         Set p2 = b.Offset(0, -1).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p2 = b.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(0, -1).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        
+                        ElseIf b.Address = "L12" Then 'ïîøëè ââåðõ'
+                        Set p2 = b.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p2 = b.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P3").Value = "óáèë"
+                        Do While Timer < Start + Pause
+                            DoEvents
+                        Loop
+                    End If 'b'
+                End If 'a'
+            
+            ElseIf pol = [L4] Then 'ÂÏ'
+                Set p1 = Union(pol.Offset(1, 0), pol.Offset(0, -1))
+                Set c = p1.Find(1, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P3").Value = "ðàíèë" 'õ1'
+                    Do While Timer < Start + Pause
+                        DoEvents
+                    Loop
+                Else 'a'
+                    Set c = p1.Find("y", LookIn:=xlValues)
+                    If Not c Is Nothing Then 'b'
+                        If c.Address = "K4" Then 'ïîøëè íàëåâî'
+                        Set p2 = c.Offset(0, -1).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p2 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                               Set p3 = p2.Offset(0, -1).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        
+                        ElseIf c.Address = "L5" Then 'ïîøëè âíèç'
+                        Set p2 = c.Offset(1, 0).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                           Set p2 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(1, 0).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P3").Value = "óáèë"
+                        Do While Timer < Start + Pause
+                            DoEvents
+                        Loop
+                    End If 'b'
+                End If 'a'
+                
+            ElseIf pol = [C13] Then 'ÍË'
+            Set p1 = Union(pol.Offset(-1, 0), pol.Offset(0, 1))
+            Set c = p1.Find(1, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P3").Value = "ðàíèë" 'õ1'
+                    Do While Timer < Start + Pause
+                        DoEvents
+                    Loop
+                Else 'a'
+                    Set c = p1.Find("y", LookIn:=xlValues)
+                    If Not c Is Nothing Then 'b'
+                    If c.Address = "D13" Then 'ïîøëè íàïðàâî'
+                        Set p2 = c.Offset(0, 1).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p2 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(0, 1).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        
+                        ElseIf c.Address = "C12" Then 'ïîøëè ââåðõ'
+                        Set p2 = c.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p2 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P3").Value = "óáèë"
+                        Do While Timer < Start + Pause
+                            DoEvents
+                        Loop
+                    End If 'b'
+                End If 'a'
+                
+            ElseIf Not Application.Intersect(pol, Range("D4:K4")) Is Nothing Then 'ÂÅÐÕ'
+            Set p1 = Union(pol.Offset(1, 0), pol.Offset(0, -1), pol.Offset(0, 1))
+            Set c = p1.Find(1, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P3").Value = "ðàíèë" 'õ1'
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = pol.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, 1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P3").Value = "óáèë"
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+                End If 'b'
+            End If 'a'
+            
+            ElseIf Not Application.Intersect(pol, Range("D13:K13")) Is Nothing Then 'ÍÈÇ'
+            Set p1 = Union(pol.Offset(-1, 0), pol.Offset(0, -1), pol.Offset(0, 1))
+            Set c = p1.Find(1, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P3").Value = "ðàíèë" 'õ1'
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = pol.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, 1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                 ElseIf c = pol.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P3").Value = "óáèë"
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+                End If 'b'
+            End If 'a'
+            
+            ElseIf Not Application.Intersect(pol, Range("L5:L12")) Is Nothing Then 'ÏÐÀÂÎ'
+            Set p1 = Union(pol.Offset(-1, 0), pol.Offset(1, 0), pol.Offset(0, -1))
+            Set c = p1.Find(1, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P3").Value = "ðàíèë" 'õ1'
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = pol.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P3").Value = "óáèë"
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+                End If 'b'
+            End If 'a'
+            
+            ElseIf Not Application.Intersect(pol, Range("C5:C12")) Is Nothing Then 'ËÅÂÎ'
+            Set p1 = Union(pol.Offset(-1, 0), pol.Offset(1, 0), pol.Offset(0, 1))
+            Set c = p1.Find(1, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P3").Value = "ðàíèë" 'õ1'
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = pol.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                               Set p4 = p3.Offset(0, 1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P3").Value = "óáèë"
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+                End If 'b'
+            End If 'a'
+            
+            Else 'ÎÑÒÀËÜÍÎÅ'
+            Set p5 = Union(pol.Offset(-1, 0), pol.Offset(0, 1), pol.Offset(1, 0), pol.Offset(0, -1))
+            Set c = p5.Find(1, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P3").Value = "ðàíèë" 'x1'
+                    Do While Timer < Start + Pause
+                        DoEvents
+                    Loop
+                Else 'a'
+                Set c = p5.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                    Set p4 = p5.FindNext(c)
+                    If Not p4 Is Nothing Then
+                        If c.Column = p4.Column Then
+                        If c.Offset(-1, 0).Value = "y" Or p4.Offset(1, 0).Value = "y" Then
+                         wk.Range("P17").Value = "óáèë"
+                         Do While Timer < Start + Pause
+                            DoEvents
+                         Loop
+                         End If
+                        ElseIf c.Row = p4.Row Then
+                        If c.Offset(0, 1).Value = "y" Or p4.Offset(0, -1).Value = "y" Then
+                        wk.Range("P17").Value = "óáèë"
+                        Do While Timer < Start + Pause
+                            DoEvents
+                         Loop
+                        End If
+                        End If
+                    End If
+                If c = pol.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                               Set p4 = p3.Offset(0, 1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                ElseIf c = pol.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(1, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P3").Value = "ðàíèë" 'õõ1'
+                            Do While Timer < Start + Pause
+                                DoEvents
+                            Loop
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(1, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P3").Value = "ðàíèë" 'õõx1'
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                    Do While Timer < Start + Pause
+                                        DoEvents
+                                    Loop
+                                End If
+                            Else
+                                wk.Range("P3").Value = "óáèë"
+                                Do While Timer < Start + Pause
+                                    DoEvents
+                                Loop
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P3").Value = "óáèë"
+                Do While Timer < Start + Pause
+                    DoEvents
+                Loop
+                End If 'b'
+            End If 'a'
+            End If 'äëÿ ãëàâíûõ'
+            i = i - 1
+            End If 'bub'
+            Next i
+        
+    ElseIf ac.Value = "12" Then 'ìû ïîïàäàåì' '3'
+        ac.Value = "y"
+        ac.Font.ColorIndex = 3
+            If ac = [C18] Then 'ÂË 11' '11'
+                Set p1 = Union(ac.Offset(1, 0), ac.Offset(0, 1))
+                Set c = p1.Find(12, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P17").Value = "ðàíèë" 'õ1'
+                Else 'a'
+                    Set c = p1.Find("y", LookIn:=xlValues)
+                    If Not c Is Nothing Then 'b'
+                        If c.Address = "D18" Then 'ïîøëè íàïðàâî'
+                        Set m2 = c.Offset(0, 1).Find(12, LookIn:=xlValues)
+                        If Not m2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set m2 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not m2 Is Nothing Then
+                                Set m3 = m2.Offset(0, 1).Find(12, LookIn:=xlValues)
+                                If Not m3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        
+                        ElseIf c.Address = "C19" Then 'ïîøëè âíèç'
+                        Set p2 = c.Offset(1, 0).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                           Set p2 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(1, 0).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P17").Value = "óáèë"
+                    End If 'b'
+                End If 'a'
+                
+            ElseIf ac = [L27] Then 'ÍÏ'
+            Set p1 = Union(ac.Offset(-1, 0), ac.Offset(0, -1))
+            Set b = p1.Find(12, LookIn:=xlValues)
+                If Not b Is Nothing Then 'a'
+                    wk.Range("P17").Value = "ðàíèë" 'õ1'
+                Else 'a'
+                    Set b = p1.Find("y", LookIn:=xlValues)
+                    If Not b Is Nothing Then 'b'
+                        If b.Address = "K27" Then 'ïîøëè íàëåâî'
+                         Set p2 = b.Offset(0, -1).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p2 = b.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(0, -1).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        
+                        ElseIf b.Address = "L26" Then 'ïîøëè ââåðõ'
+                        Set p2 = b.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p2 = b.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                                s = s + 1
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P17").Value = "óáèë"
+                        s = s + 1
+                    End If 'b'
+                End If 'a'
+            
+            ElseIf ac = [L18] Then 'ÂÏ'
+                Set p1 = Union(ac.Offset(1, 0), ac.Offset(0, -1))
+                Set c = p1.Find(12, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P17").Value = "ðàíèë" 'õ1'
+                Else 'a'
+                    Set c = p1.Find("y", LookIn:=xlValues)
+                    If Not c Is Nothing Then 'b'
+                        If c.Address = "K18" Then 'ïîøëè íàëåâî'
+                        Set p2 = c.Offset(0, -1).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p2 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                p3 = p2.Offset(0, -1).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        
+                        ElseIf c.Address = "L19" Then 'ïîøëè âíèç'
+                        Set p2 = c.Offset(1, 0).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                           Set p2 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(1, 0).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P17").Value = "óáèë"
+                    End If 'b'
+                End If 'a'
+                
+            ElseIf ac = [C27] Then 'ÍË'
+            Set p1 = Union(ac.Offset(-1, 0), ac.Offset(0, 1))
+            Set c = p1.Find(12, LookIn:=xlValues)
+                If Not c Is Nothing Then 'a'
+                    wk.Range("P17").Value = "ðàíèë" 'õ1'
+                Else 'a'
+                    Set c = p1.Find("y", LookIn:=xlValues)
+                    If Not c Is Nothing Then 'b'
+                        If c.Address = "D27" Then 'ïîøëè íàïðàâî'
+                        Set p2 = c.Offset(0, 1).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p2 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(0, 1).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        
+                        ElseIf c.Address = "C26" Then 'ïîøëè ââåðõ'
+                        Set p2 = c.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                        If Not p2 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p2 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p2 Is Nothing Then
+                                Set p3 = p2.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                                If Not p3 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        End If
+                        
+                    Else 'b'
+                        wk.Range("P17").Value = "óáèë"
+                    End If 'b'
+                End If 'a'
+                
+            ElseIf Not Application.Intersect(ac, Range("D18:K18")) Is Nothing Then 'ÂÅÐÕ'
+            Set p1 = ac.Offset(1, 0)
+            Set p2 = ac.Offset(0, -1)
+            Set p3 = ac.Offset(0, 1)
+            Set p4 = Union(p1, p2, p3)
+            Set c = p4.Find(12, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P17").Value = "ðàíèë" 'õ1'
+            Else 'a'
+                Set c = p4.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = ac.Offset(0, -1) Then 'íàëåâî'
+                Set p1 = c.Offset(0, -1).Find(12, LookIn:=xlValues)
+                        If Not p1 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p1 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p1 Is Nothing Then
+                                Set m2 = p1.Offset(0, -1).Find(12, LookIn:=xlValues)
+                                If Not m2 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(1, 0) Then 'âíèç'
+                Set p1 = c.Offset(1, 0).Find(12, LookIn:=xlValues)
+                        If Not p1 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p1 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p1 Is Nothing Then
+                                Set p1 = p2.Offset(1, 0).Find(12, LookIn:=xlValues)
+                                If Not p2 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(0, 1) Then 'íàïðàâî'
+                Set p1 = c.Offset(0, 1).Find(12, LookIn:=xlValues)
+                        If Not p1 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p1 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p1 Is Nothing Then
+                                Set p2 = p1.Offset(0, 1).Find(12, LookIn:=xlValues)
+                                If Not p2 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P17").Value = "óáèë"
+                End If 'b'
+            End If 'a'
+            
+            ElseIf Not Application.Intersect(ac, Range("D27:K27")) Is Nothing Then 'ÍÈÇ'
+            Set p1 = Union(ac.Offset(-1, 0), ac.Offset(0, -1), ac.Offset(0, 1))
+            Set c = p1.Find(12, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P17").Value = "ðàíèë" 'õ1'
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = ac.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, 1).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                 ElseIf c = ac.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P17").Value = "óáèë"
+                End If 'b'
+            End If 'a'
+            
+            ElseIf Not Application.Intersect(ac, Range("L19:L26")) Is Nothing Then 'ÏÐÀÂÎ'
+            Set p1 = Union(ac.Offset(-1, 0), ac.Offset(1, 0), ac.Offset(0, -1))
+            Set c = p1.Find(12, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P17").Value = "ðàíèë" 'õ1'
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = ac.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P17").Value = "óáèë"
+                End If 'b'
+            End If 'a'
+            
+            ElseIf Not Application.Intersect(ac, Range("C19:C26")) Is Nothing Then 'ËÅÂÎ'
+            Set p1 = Union(ac.Offset(-1, 0), ac.Offset(1, 0), ac.Offset(0, 1))
+            Set c = p1.Find(12, LookIn:=xlValues)
+            If Not c Is Nothing Then 'a'
+                wk.Range("P17").Value = "ðàíèë" 'õ1'
+            Else 'a'
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then 'b'
+                If c = ac.Offset(-1, 0) Then 'ââåðõ'
+                 Set p3 = c.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                               Set p4 = p3.Offset(0, 1).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                End If
+                Else 'b'
+                wk.Range("P17").Value = "óáèë"
+                End If 'b'
+            End If 'a'
+            
+            Else 'ÎÑÒÀËÜÍÎÅ'
+            Set p1 = Union(ac.Offset(-1, 0), ac.Offset(0, 1), ac.Offset(1, 0), ac.Offset(0, -1))
+            Set c = p1.Find(12, LookIn:=xlValues)
+                If Not c Is Nothing Then
+                    wk.Range("P17").Value = "ðàíèë" 'x1'
+                Else
+                Set c = p1.Find("y", LookIn:=xlValues)
+                If Not c Is Nothing Then
+                Set p4 = p1.FindNext(c)
+                    If Not p4 Is Nothing Then
+                        If c.Column = p4.Column Then
+                        If c.Offset(-1, 0).Value = "y" Or p4.Offset(1, 0).Value = "y" Then
+                         wk.Range("P17").Value = "óáèë"
+                         End If
+                        ElseIf c.Row = p4.Row Then
+                        If c.Offset(0, 1).Value = "y" Or p4.Offset(0, -1).Value = "y" Then
+                        wk.Range("P17").Value = "óáèë"
+                        End If
+                        End If
+                    End If
+                If c = ac.Offset(-1, 0) Then 'ââåðõ'
+                Set p3 = c.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(-1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(-1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(0, -1) Then 'íàëåâî'
+                Set p3 = c.Offset(0, -1).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(0, -1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(0, -1).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(0, 1) Then 'íàïðàâî'
+                Set p3 = c.Offset(0, 1).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(0, 1).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                               Set p4 = p3.Offset(0, 1).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P17").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                ElseIf c = ac.Offset(1, 0) Then 'âíèç'
+                Set p3 = c.Offset(1, 0).Find(12, LookIn:=xlValues)
+                        If Not p3 Is Nothing Then
+                            wk.Range("P17").Value = "ðàíèë" 'õõ1'
+                        Else
+                            Set p3 = c.Offset(1, 0).Find("y", LookIn:=xlValues)
+                            If Not p3 Is Nothing Then
+                                Set p4 = p3.Offset(1, 0).Find(12, LookIn:=xlValues)
+                                If Not p4 Is Nothing Then
+                                    wk.Range("P17").Value = "ðàíèë" 'õõx1'
+                                Else
+                                    wk.Range("P3").Value = "óáèë"
+                                End If
+                            Else
+                                wk.Range("P17").Value = "óáèë"
+                            End If
+                        End If
+                        End If
+                Else 'b'
+                wk.Range("P17").Value = "óáèë"
+                End If 'b'
+            End If 'a'
+           
+            End If
+                    
+     End If '3'
+End If '2'
+
+Else: Exit Sub '1'
+End If '1'
+
+s = Application.WorksheetFunction.CountIf(Range("C4:L13"), "y")
+d = Application.WorksheetFunction.CountIf(Range("C18:L27"), "y")
+ If s = 20 Then
+ n = n + 1
+ MsgBox ("Óâû, âàñ ïåðåèãðàë êîìïüþòåð... íàæìèòå 'î÷èñòèòü' è 'ðàññòàâèòü', åñëè õîòèòå âçÿòü ðåâàíø ")
+ wk.Range("P9").Value = n
+ End If
+ If d = 20 Then
+ l = l + 1
+ MsgBox ("Ïîçäðàâëÿþ, âû îáûãðàëè êîìïüþòåð. íàæìèòå 'î÷èñòèòü' è 'ðàññòàâèòü', åñëè õîòèòå ïîáåäèòü åùå ðàç")
+ wk.Range("Q9").Value = l
+ End If
+End Sub
+
+Private Sub CommandButton2_Click()
+
+Dim arrkak() As Variant
+Dim i As Byte
+
+CommandButton2.Caption = "Î÷èñòèòü"
+With Worksheets("Ëèñò1").Range("C4:L13,C18:L27")
+.ClearFormats
+.ClearContents
+.Borders.LineStyle = True
+.Borders(xlEdgeBottom).Weight = xlThick
+.Borders(xlEdgeTop).Weight = xlThick
+.Borders(xlEdgeLeft).Weight = xlThick
+.Borders(xlEdgeRight).Weight = xlThick
+End With
+
+Worksheets("Ëèñò1").Range("P3, P17").Value = ""
+Range("M3:M14") = Empty
+Range("B14:L14") = Empty
+Range("M17:M28") = Empty
+Range("B28:L28") = Empty
+flag = False
+End Sub
 
